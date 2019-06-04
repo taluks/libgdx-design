@@ -1,0 +1,10 @@
+apply plugin: 'java'
+
+repositories {
+     mavenCentral()
+}
+def gdxVersion = '1.9.9'
+
+dependencies {
+    implementation "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
+}

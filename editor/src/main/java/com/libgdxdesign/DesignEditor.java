@@ -2,109 +2,63 @@ package com.libgdxdesign;
 
 import java.awt.dnd.DropTarget;
 
+import org.puremvc.java.interfaces.IFacade;
+import org.puremvc.java.patterns.facade.Facade;
+
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.backends.lwjgl.LwjglFrame;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
-import com.google.common.eventbus.EventBus;
-import com.google.inject.AbstractModule;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import com.libgdxdesign.core.HotKeyListener;
-import com.libgdxdesign.core.command.CommandExecutor;
-import com.libgdxdesign.core.event.ResizeEvent;
-import com.libgdxdesign.core.resource.parser.SkinParser;
-import com.libgdxdesign.manager.ProjectManager;
-import com.libgdxdesign.utils.Assets;
-import com.libgdxdesign.view.EditorScene;
-import com.libgdxdesign.view.EditorUI;
-import com.libgdxdesign.view.frame.FileDropListener;
+import com.kotcrab.vis.ui.VisUI;
+import com.libgdxdesign.core.controller.DropFilesCommand;
+import com.libgdxdesign.core.controller.StartupCommand;
+import com.libgdxdesign.core.controller.notification.DesignNotification;
+import com.libgdxdesign.core.controller.notification.ResourceNotification;
+import com.libgdxdesign.core.util.FileDropListener;
 
 public class DesignEditor extends ApplicationAdapter {
 
-	private static final Color bgColor =  Color.valueOf("#2a2a2a");
-	
-	private EditorScene scene;
-	private EditorUI ui;
-	private EventBus eventBus;
+	private IFacade facade;
 
 	public DesignEditor() {
-
+		
 	}
-
+	
 	@Override
 	public void create() {
-
-		Injector injector = Guice.createInjector(new AbstractModule() {
-
-			@Override
-			protected void configure() {
-				bind(EventBus.class).asEagerSingleton();
-				bind(Assets.class);
-				bind(EditorUI.class);
-				bind(CommandExecutor.class);
-				bind(EditorScene.class);
-				bind(ProjectManager.class).asEagerSingleton();
-				bind(FileDropListener.class);				
-				bind(SkinParser.class).asEagerSingleton();
-			}
-
-		});
-
-		Assets assets = injector.getInstance(Assets.class);
-		assets.load();
+		VisUI.load("skin/uiskin.json");
+		facade = Facade.getInstance(() -> new Facade());
+		facade.registerCommand(DesignNotification.STARTUP, StartupCommand::new);		
 		
-		new DropTarget(LwjglFrame.getFrames()[0], injector.getInstance(FileDropListener.class));
+		facade.sendNotification(DesignNotification.STARTUP);
+		facade.sendNotification(DesignNotification.CREATE);
 		
-		eventBus = injector.getInstance(EventBus.class);
-		scene = injector.getInstance(EditorScene.class);
-		ui = injector.getInstance(EditorUI.class);
-		injector.getInstance(CommandExecutor.class);
-		
-		InputMultiplexer multiplexer = new InputMultiplexer();		
-		multiplexer.addProcessor(ui);
-		multiplexer.addProcessor(scene);
-		multiplexer.addProcessor(new HotKeyListener(eventBus));
-		Gdx.input.setInputProcessor(multiplexer);
+		new DropTarget(LwjglFrame.getFrames()[0], new FileDropListener(facade));		
 	}
-
-	@Override
-	public void resize(int width, int height) {
-		super.resize(width, height);
-		scene.getViewport().update(width, height, true);
-		ui.getViewport().update(width, height, true);
-		eventBus.post(new ResizeEvent(width, height));
-	}
-
+	
 	@Override
 	public void render() {
-		GL20 gl = Gdx.gl;
-		gl.glClearColor(bgColor.r, bgColor.g, bgColor.b, bgColor.a);
-		gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		facade.sendNotification(DesignNotification.RENDER, Gdx.graphics.getDeltaTime());
 
-		scene.act(Gdx.graphics.getDeltaTime());
-		scene.draw();
-
-		ui.act(Gdx.graphics.getDeltaTime());
-		ui.draw();
+	}
+	
+	@Override
+	public void resize(int width, int height) {
+		facade.sendNotification(DesignNotification.RESIZE, new int[]{width, height});
 	}
 
 	@Override
 	public void pause() {
-		super.pause();
+		facade.sendNotification(DesignNotification.PAUSE);
 	}
 
 	@Override
 	public void resume() {
-		super.resume();
+		facade.sendNotification(DesignNotification.RESUME);
 	}
 
 	@Override
 	public void dispose() {
-		super.dispose();
-		scene.dispose();
-		ui.dispose();
+		facade.sendNotification(DesignNotification.DISPOSE);
+		VisUI.dispose();
 	}
 }

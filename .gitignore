@@ -1,3 +1,4 @@
 .gradle/
 component/bin/
 editor/bin/
+/build/

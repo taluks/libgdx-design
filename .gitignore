@@ -2,3 +2,7 @@
 component/bin/
 editor/bin/
 /build/
+/editor/.settings/
+/component/.settings/
+/.settings/
+.idea/

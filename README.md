@@ -1,3 +1,7 @@
-# libgdx-design
+# LibGDX Desig
+*A visual Scene2D UI editor for LibGDX*
 
-![alt text](https://github.com/taluks/libgdx-design/blob/master/editor/resources/LibGDX_Design.png)
+![img.png](img.png)
+
+> 💡 **Need ready-made skins to start with?** Browse the community collection at  
+> [https://github.com/czyzby/gdx-skins](https://github.com/czyzby/gdx-skins)

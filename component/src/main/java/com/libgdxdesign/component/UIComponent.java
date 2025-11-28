@@ -3,32 +3,13 @@ package com.libgdxdesign.component;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.GdxRuntimeException;
-import com.badlogic.gdx.utils.Json;
-import com.badlogic.gdx.utils.ObjectMap;
-import com.badlogic.gdx.utils.ObjectSet;
-import com.badlogic.gdx.utils.SerializationException;
+import com.badlogic.gdx.utils.*;
 import com.libgdxdesign.component.loader.ActorDataSerializer;
+import com.libgdxdesign.component.loader.CellDataSerializer;
 import com.libgdxdesign.component.loader.UIComponentSerializer;
-import com.libgdxdesign.component.loader.assembler.ActorAssembler;
-import com.libgdxdesign.component.loader.assembler.ButtonAssembler;
-import com.libgdxdesign.component.loader.assembler.CheckBoxAssembler;
-import com.libgdxdesign.component.loader.assembler.DialogAssembler;
-import com.libgdxdesign.component.loader.assembler.GroupAssembler;
-import com.libgdxdesign.component.loader.assembler.ImageAssembler;
-import com.libgdxdesign.component.loader.assembler.ImageButtonAssembler;
-import com.libgdxdesign.component.loader.assembler.ImageTextButtonAssembler;
-import com.libgdxdesign.component.loader.assembler.LabelAssembler;
-import com.libgdxdesign.component.loader.assembler.ProgressBarAssembler;
-import com.libgdxdesign.component.loader.assembler.ProxyAssembler;
-import com.libgdxdesign.component.loader.assembler.SelectBoxAssembler;
-import com.libgdxdesign.component.loader.assembler.TableAssembler;
-import com.libgdxdesign.component.loader.assembler.TextAreaAssembler;
-import com.libgdxdesign.component.loader.assembler.TextButtonAssembler;
-import com.libgdxdesign.component.loader.assembler.TextFieldAssembler;
-import com.libgdxdesign.component.loader.assembler.WindowAssembler;
+import com.libgdxdesign.component.loader.assembler.*;
 import com.libgdxdesign.component.model.ActorData;
+import com.libgdxdesign.component.model.CellData;
 
 public class UIComponent implements ProxyAssembler{
 	
@@ -58,7 +39,7 @@ public class UIComponent implements ProxyAssembler{
 		json.setUsePrototypes(false);
 		json.setSerializer(UIComponent.class, new UIComponentSerializer(this));
 		json.setSerializer(ActorData.class, new ActorDataSerializer());
-		
+		json.setSerializer(CellData.class, new CellDataSerializer());
 	}
 	
 	public UIComponent register(ActorAssembler<?, ?> actorAssembler) {

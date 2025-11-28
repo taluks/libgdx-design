@@ -12,15 +12,15 @@ public class SelectBoxAssembler extends ActorAssembler<SelectBox<?>, SelectBoxDa
 
 	@Override
 	public SelectBox<?> build(ProxyAssembler proxy, Skin skin, SelectBoxData data) {
-		SelectBox<?> selectBox = new SelectBox<Object>(skin, data.styleName);
-		return buildParameters(selectBox, data);
+		SelectBox<?> selectBox = new SelectBox<>(skin, data.styleName);
+		return buildParameters(proxy, skin, selectBox, data);
 	}
 
 	@Override
 	public SelectBoxData assemble(ProxyAssembler proxy, Skin skin, SelectBox<?> actor) {
 		SelectBoxData data = new SelectBoxData();
 		data.styleName = skin.find(actor.getStyle());
-		return assembleParameters(data, actor);
+		return assembleParameters(proxy, skin, data, actor);
 	}
 
 }

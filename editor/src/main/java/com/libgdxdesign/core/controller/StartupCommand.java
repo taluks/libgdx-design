@@ -9,6 +9,7 @@ public class StartupCommand extends MacroCommand {
 		addSubCommand(PrepareProxyCommand::new);
 		addSubCommand(BootstrapViewCommand::new);
 		addSubCommand(BootstrapCommand::new);
+		addSubCommand(EditorCommand::new);
 	}
 
 }

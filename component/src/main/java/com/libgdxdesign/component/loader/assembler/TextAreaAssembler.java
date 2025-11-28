@@ -10,16 +10,16 @@ public class TextAreaAssembler extends ActorAssembler<TextArea, TextAreaData> {
 	public TextArea build(ProxyAssembler proxy, Skin skin, TextAreaData data) {
 		TextArea textArea = new TextArea(data.text, skin, data.styleName);
 		textArea.setMaxLength(data.maxLength);
-		return buildParameters(textArea, data);
+		return buildParameters(proxy, skin, textArea, data);
 	}
 
 	@Override
 	public TextAreaData assemble(ProxyAssembler proxy, Skin skin, TextArea actor) {
 		TextAreaData data = new TextAreaData();
 		data.maxLength = actor.getMaxLength();
-		data.text = actor.getText().toString();
+		data.text = actor.getText();
 		data.styleName = skin.find(actor.getStyle());
-		return assembleParameters(data, actor);
+		return assembleParameters(proxy, skin, data, actor);
 	}
 
 }

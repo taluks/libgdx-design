@@ -38,19 +38,17 @@ public class UiComponentTest extends ApplicationAdapter {
 		Skin skin = manager.get(fileSkin);
 		
 		Label label = new Label("My litle label", skin);
-		label.setPosition(10, 200);
 		label.setName("lbl1");
 		
 		Button button = new TextButton("Button", skin);
-		button.setPosition(10, 160);
 		button.setSize(70, 30);
 		button.setName("btn1");
 		
 		Window window = new Window("Window", skin);
 		window.setName("wnd1");
-		window.addActor(label);
-		window.addActor(button);
-		window.setSize(350, 250);
+		window.add(label).expand().center().row();
+		window.add(button).expandX().row();
+		window.setSize(200, 150);
 		stage.addActor(window);
 		
 		UIComponent builder = new UIComponent();

@@ -11,5 +11,4 @@ public class ResourceWrapper extends Container<Actor> {
 	public ResourceWrapper(Actor actor) {
 		super(actor);
 	}
-
 }

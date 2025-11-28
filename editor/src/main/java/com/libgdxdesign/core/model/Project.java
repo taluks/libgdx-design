@@ -9,7 +9,7 @@ public class Project {
 	private Skin skin;
 	private UIComponent uiComponent;
 
-	public ObjectMap<String, Actor> builUiComponent() {
+	public ObjectMap<String, Actor> buildUiComponent() {
 		return uiComponent.build(skin);
 	}
 

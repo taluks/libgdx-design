@@ -1,6 +1,6 @@
 package com.libgdxdesign.component.model;
 
-public class WindowData extends GroupData {
+public class WindowData extends TableData {
 
 	public String title;
 	public String styleName;

@@ -9,14 +9,14 @@ public class ImageButtonAssembler extends ActorAssembler<ImageButton, ImageButto
 	@Override
 	public ImageButton build(ProxyAssembler proxy, Skin skin, ImageButtonData data) {
 		ImageButton button = new ImageButton(skin, data.styleName);
-		return buildParameters(button, data);
+		return buildParameters(proxy, skin, button, data);
 	}
 
 	@Override
 	public ImageButtonData assemble(ProxyAssembler proxy, Skin skin, ImageButton actor) {
 		ImageButtonData data = new ImageButtonData();
 		data.styleName = skin.find(actor.getStyle());
-		return assembleParameters(data, actor);
+		return assembleParameters(proxy, skin, data, actor);
 	}
 
 }

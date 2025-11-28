@@ -14,14 +14,14 @@ public class ImageAssembler extends ActorAssembler<Image, ImageData> {
 	@Override
 	public Image build(ProxyAssembler proxy, Skin skin, ImageData data) {
 		Image image = new Image(skin, data.drawableName);
-		return buildParameters(image, data);
+		return buildParameters(proxy, skin, image, data);
 	}
 
 	@Override
 	public ImageData assemble(ProxyAssembler proxy, Skin skin, Image actor) {
 		ImageData data = new ImageData();
 		data.drawableName = ((BaseDrawable) actor.getDrawable()).getName();
-		return assembleParameters(data, actor);
+		return assembleParameters(proxy, skin, data, actor);
 	}
 
 }

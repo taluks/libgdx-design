@@ -6,3 +6,5 @@ editor/bin/
 /component/.settings/
 /.settings/
 .idea/
+/editor/out/
+/component/out/

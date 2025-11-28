@@ -7,7 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.ui.Window.WindowStyle;
 import com.badlogic.gdx.utils.ObjectMap;
-import com.libgdxdesign.resource.CloaneableWindow;
+import com.libgdxdesign.resource.CloneableWindow;
 import com.libgdxdesign.resource.CloneableResource;
 
 public class WindowParser implements ResourceParser {
@@ -22,7 +22,7 @@ public class WindowParser implements ResourceParser {
 			WindowStyle windowStyle = styles.get(key);
 			windowStyle.stageBackground = null;
 			Window window = new Window("Window", skin, key);
-			CloneableResource<?> cloneableResource = new CloaneableWindow(window);
+			CloneableResource<?> cloneableResource = new CloneableWindow(window);
 			items.put(key, cloneableResource);
 		}
 		return items;

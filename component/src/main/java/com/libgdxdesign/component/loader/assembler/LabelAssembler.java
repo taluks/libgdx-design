@@ -14,7 +14,7 @@ public class LabelAssembler extends ActorAssembler<Label, LabelData> {
 	public Label build(ProxyAssembler proxy, Skin skin, LabelData data) {
 		Label label = new Label(data.text, skin, data.styleName);
 		label.setAlignment(data.alignment);
-		return buildParameters(label, data);
+		return buildParameters(proxy, skin, label, data);
 	}
 
 	@Override
@@ -23,7 +23,7 @@ public class LabelAssembler extends ActorAssembler<Label, LabelData> {
 		data.alignment = actor.getLabelAlign();
 		data.text = actor.getText().toString();
 		data.styleName = skin.find(actor.getStyle());
-		return assembleParameters(data, actor);
+		return assembleParameters(proxy, skin, data, actor);
 	}
 
 }

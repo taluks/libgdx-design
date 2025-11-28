@@ -4,19 +4,19 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 
 public class CloneableImage implements CloneableResource<Image> {
 
-	private Image image;
-	public CloneableImage(Image image) {
-		this.image = image;
-	}
+    private final Image image;
 
-	@Override
-	public Image getActor() {
-		return image;
-	}
+    public CloneableImage(Image image) {
+        this.image = image;
+    }
 
-	@Override
-	public Image clone() {
-		return new Image(image.getDrawable());
-	}
+    @Override
+    public Image getActor() {
+        return image;
+    }
 
+    @Override
+    public Image clone() {
+        return new Image(image.getDrawable());
+    }
 }

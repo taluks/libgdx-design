@@ -11,17 +11,17 @@ public class TextFieldAssembler extends ActorAssembler<com.badlogic.gdx.scenes.s
 		TextField textField = new TextField(data.text, skin, data.styleName);
 		textField.setPasswordMode(data.passwordMode);
 		textField.setMaxLength(data.maxLength);
-		return buildParameters(textField, data);
+		return buildParameters(proxy, skin, textField, data);
 	}
 
 	@Override
 	public TextFieldData assemble(ProxyAssembler proxy, Skin skin, TextField actor) {
 		TextFieldData data = new TextFieldData();
-		data.text = actor.getText().toString();
+		data.text = actor.getText();
 		data.styleName = skin.find(actor.getStyle());
 		data.passwordMode = actor.isPasswordMode();
 		data.maxLength = actor.getMaxLength();
-		return assembleParameters(data, actor);
+		return assembleParameters(proxy, skin, data, actor);
 	}
 
 }

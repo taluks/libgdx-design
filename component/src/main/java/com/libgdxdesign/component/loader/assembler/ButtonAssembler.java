@@ -13,14 +13,14 @@ public class ButtonAssembler extends ActorAssembler<Button, ButtonData> {
 	@Override
 	public Button build(ProxyAssembler proxy, Skin skin, ButtonData data) {
 		Button button = new Button(skin, data.styleName);
-		return buildParameters(button, data);
+		return buildParameters(proxy, skin, button, data);
 	}
 
 	@Override
 	public ButtonData assemble(ProxyAssembler proxy, Skin skin, Button actor) {
 		ButtonData data = new ButtonData();
 		data.styleName = skin.find(actor.getStyle());
-		return assembleParameters(data, actor);
+		return assembleParameters(proxy, skin, data, actor);
 	}
 
 

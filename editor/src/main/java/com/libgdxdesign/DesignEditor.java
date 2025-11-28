@@ -21,7 +21,7 @@ public class DesignEditor extends ApplicationAdapter {
 
 	@Override
 	public void create() {
-		VisUI.load("skin/uiskin.json");
+		VisUI.load();
 		facade = Facade.getInstance(Facade::new);
 		facade.registerCommand(DesignNotification.STARTUP, StartupCommand::new);
 

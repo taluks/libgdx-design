@@ -21,7 +21,6 @@ public abstract class RevertibleCommand extends SimpleCommand {
 		commandProxy = (CommandProxy) facade.retrieveProxy(CommandProxy.class.getCanonicalName());
 		commandProxy.addCommand(this);
 	}
-
 	public abstract void doAction();
 	public abstract void undoAction();
 
@@ -40,5 +39,4 @@ public abstract class RevertibleCommand extends SimpleCommand {
 	public void setDone(boolean done) {
 		this.done = done;
 	}
-
 }

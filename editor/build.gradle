@@ -25,8 +25,13 @@ dependencies {
     implementation "com.badlogicgames.gdx:gdx:$gdxVersion"
     implementation "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
 
-    compile group: 'com.kotcrab.vis', name: 'vis-ui', version: '1.4.4'
-	compile group: 'org.puremvc', name: 'puremvc', version: '2.1'
+    implementation group: 'com.kotcrab.vis', name: 'vis-ui', version: '1.4.4'
+    implementation group: 'org.puremvc', name: 'puremvc', version: '2.1'
     // Use JUnit test framework
     testImplementation 'junit:junit:4.13.1'
+}
+
+compileJava {
+    sourceCompatibility = '17'
+    targetCompatibility = '17'
 }

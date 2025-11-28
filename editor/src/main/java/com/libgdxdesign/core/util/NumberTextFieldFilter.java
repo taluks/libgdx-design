@@ -9,5 +9,4 @@ public class NumberTextFieldFilter implements TextFieldFilter {
 	public boolean acceptChar(TextField textField, char c) {
 		return Character.isDigit(c) || Character.getDirectionality(c) == Character.ENCLOSING_MARK;
 	}
-
 }

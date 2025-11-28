@@ -13,7 +13,7 @@ public class TextButtonAssembler extends ActorAssembler<TextButton, TextButtonDa
 	@Override
 	public TextButton build(ProxyAssembler proxy, Skin skin, TextButtonData data) {
 		TextButton button = new TextButton(data.text, skin, data.styleName);
-		return buildParameters(button, data);
+		return buildParameters(proxy, skin, button, data);
 	}
 
 	@Override
@@ -21,7 +21,7 @@ public class TextButtonAssembler extends ActorAssembler<TextButton, TextButtonDa
 		TextButtonData data = new TextButtonData();
 		data.text = actor.getLabel().getText().toString();
 		data.styleName = skin.find(actor.getStyle());
-		return assembleParameters(data, actor);
+		return assembleParameters(proxy, skin, data, actor);
 	}
 
 }

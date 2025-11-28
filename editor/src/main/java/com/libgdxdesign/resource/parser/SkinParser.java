@@ -1,13 +1,12 @@
 package com.libgdxdesign.resource.parser;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 public class SkinParser {
 
-	private Set<ResourceParser> list = new HashSet<>();
-	
-	
+	private final Set<ResourceParser> list = new LinkedHashSet<>();
+
 	public SkinParser() {
 		register(new ButtonParser());
 		register(new CheckBoxParser());
@@ -30,6 +29,4 @@ public class SkinParser {
 	public Set<ResourceParser> getParsers(){
 		return list;
 	}
-	
-
 }

@@ -1,9 +1,12 @@
 package com.libgdxdesign.component.model;
 
-public class TableData extends ActorData {
+import com.badlogic.gdx.utils.Array;
+
+public class TableData extends GroupData {
+
+	public Array<CellData> cells;
 
 	public TableData() {
 		
 	}
-
 }

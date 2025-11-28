@@ -20,7 +20,7 @@ public class DialogAssembler extends ActorAssembler<Dialog, DialogData> {
 		window.setModal(data.isModal);
 		window.setMovable(data.isMovable);
 		window.setResizable(data.isResizable);
-		return buildParameters(window, data);
+		return buildParameters(proxy, skin, window, data);
 	}
 
 	@Override
@@ -41,8 +41,8 @@ public class DialogAssembler extends ActorAssembler<Dialog, DialogData> {
 			}
 			children.add(assembler.assemble(proxy, skin, child));
 		}
-		data.children = children.shrink();
-		return assembleParameters(data, actor);
+		data.children = children;
+		return assembleParameters(proxy, skin, data, actor);
 	}
 
 }

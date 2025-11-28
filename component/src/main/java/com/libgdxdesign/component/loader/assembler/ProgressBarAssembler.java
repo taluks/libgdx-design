@@ -9,7 +9,7 @@ public class ProgressBarAssembler extends ActorAssembler<ProgressBar, ProgressBa
 	@Override
 	public ProgressBar build(ProxyAssembler proxy, Skin skin, ProgressBarData data) {
 		ProgressBar progressBar = new ProgressBar(data.min, data.max, data.stepSize, data.vertical, skin, data.styleName);
-		return buildParameters(progressBar, data);
+		return buildParameters(proxy, skin, progressBar, data);
 	}
 
 	@Override
@@ -20,7 +20,7 @@ public class ProgressBarAssembler extends ActorAssembler<ProgressBar, ProgressBa
 		data.stepSize = actor.getStepSize();
 		data.vertical = actor.isVertical();
 		data.styleName = skin.find(actor.getStyle());
-		return assembleParameters(data, actor);
+		return assembleParameters(proxy, skin, data, actor);
 	}
 
 }

@@ -1,0 +1,1 @@
+{name:"Table1",className:"com.badlogic.gdx.scenes.scene2d.ui.Table",x:389,y:301,width:134,height:148,visible:true,cells:[{actor:{name:"CheckBox3",className:"com.badlogic.gdx.scenes.scene2d.ui.CheckBox",x:25,y:65,width:85,height:18,visible:true,text:"CheckBox",styleName:"default"},align:1,colspan:1}]}

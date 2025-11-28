@@ -9,7 +9,7 @@ public class ImageTextButtonAssembler extends ActorAssembler<ImageTextButton, Im
 	@Override
 	public ImageTextButton build(ProxyAssembler proxy, Skin skin, ImageTextButtonData data) {
 		ImageTextButton button = new ImageTextButton(data.text, skin, data.styleName);
-		return buildParameters(button, data);
+		return buildParameters(proxy, skin, button, data);
 	}
 
 	@Override
@@ -17,7 +17,7 @@ public class ImageTextButtonAssembler extends ActorAssembler<ImageTextButton, Im
 		ImageTextButtonData data = new ImageTextButtonData();
 		data.styleName = skin.find(actor.getStyle());
 		data.text = actor.getText().toString();
-		return assembleParameters(data, actor);
+		return assembleParameters(proxy, skin, data, actor);
 	}
 
 }

@@ -15,15 +15,15 @@ public abstract class ActorAssembler<A extends Actor, D extends ActorData> {
 
 	public abstract D assemble(ProxyAssembler proxy, Skin skin, A actor);
 
-	public Class<?> getActorClass() {
+	public final Class<?> getActorClass() {
 		return ReflectionUtils.getGenericParameterClass(this.getClass(), 0);
 	}
 
-	public Class<?> getActorDataClass() {
+	public final Class<?> getActorDataClass() {
 		return ReflectionUtils.getGenericParameterClass(this.getClass(), 1);
 	}
 
-	public A buildParameters(A actor, D data) {
+	public A buildParameters(ProxyAssembler proxy, Skin skin, A actor, D data) {
 		actor.setName(data.name);
 		actor.setPosition(data.x, data.y);
 		actor.setSize(data.width, data.height);
@@ -35,7 +35,7 @@ public abstract class ActorAssembler<A extends Actor, D extends ActorData> {
 		return actor;
 	}
 
-	public D assembleParameters(D data, A actor) {
+	public D assembleParameters(ProxyAssembler proxy, Skin skin, D data, A actor) {
 		data.className = actor.getClass().getName();
 		data.name = actor.getName();
 		data.x = actor.getX();

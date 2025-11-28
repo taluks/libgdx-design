@@ -3,6 +3,7 @@ package com.libgdxdesign.component.loader.assembler;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Group;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.utils.Array;
 import com.libgdxdesign.component.model.ActorData;
 import com.libgdxdesign.component.model.GroupData;
 
@@ -19,18 +20,17 @@ public class GroupAssembler extends ActorAssembler<Group, GroupData> {
 			Actor actor = proxy.getBuilder(child.getClass()).build(proxy, skin, child);
 			group.addActor(actor);
 		}
-		return buildParameters(group, data);
+		return buildParameters(proxy, skin, group, data);
 	}
 
 	@Override
 	public GroupData assemble(ProxyAssembler proxy, Skin skin, Group actor) {
 		GroupData data = new GroupData();
-		data.children = new ActorData[actor.getChildren().size];
+		data.children = new Array<>();
 		for (int i = 0; i < actor.getChildren().size; i++) {
 			Actor child = actor.getChildren().get(i);
-			data.children[i] = proxy.getAssembler(child.getClass()).assemble(proxy, skin, child);
+			data.children.add(proxy.getAssembler(child.getClass()).assemble(proxy, skin, child));
 		}
-		return assembleParameters(data, actor);
+		return assembleParameters(proxy, skin, data, actor);
 	}
-
 }

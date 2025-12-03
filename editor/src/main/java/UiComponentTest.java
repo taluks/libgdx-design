@@ -7,11 +7,8 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Button;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Window;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Json;
 import com.badlogic.gdx.utils.JsonWriter.OutputType;
 import com.badlogic.gdx.utils.ObjectMap;
@@ -46,14 +43,21 @@ public class UiComponentTest extends ApplicationAdapter {
 		
 		Window window = new Window("Window", skin);
 		window.setName("wnd1");
-		window.add(label).expand().center().row();
-		window.add(button).expandX().row();
+		window.add(label).expand().top().padTop(10).row();
+		window.add(button).expandX().fill().padBottom(20);
 		window.setSize(200, 150);
 		stage.addActor(window);
-		
+
+		Button newBtn = new TextButton("New Btn", skin);
+		newBtn.setSize(100, 20);
+		newBtn.setPosition(0,150);
+		newBtn.setName("btn2");
+		stage.addActor(newBtn);
+
 		UIComponent builder = new UIComponent();
-		ActorData actorData = builder.assemble(skin, window);
-		window.remove();
+		ActorData[] actorData = builder.assemble(skin, Array.with(window, newBtn));
+
+		stage.clear();
 		
 		FileHandle file = new FileHandle(fileUi);
 		Json json = new Json();

@@ -1,4 +1,4 @@
-# LibGDX Desig
+# LibGDX Design
 *A visual Scene2D UI editor for LibGDX*
 
 ![img.png](img.png)

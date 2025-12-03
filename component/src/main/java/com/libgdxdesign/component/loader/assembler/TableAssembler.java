@@ -11,8 +11,7 @@ public class TableAssembler extends AbstractTableAssembler<Table, TableData> {
         Table table = new Table(skin);
         return buildParameters(proxy, skin, table, data);
     }
-
-
+    
     @Override
     public TableData assemble(ProxyAssembler proxy, Skin skin, Table actor) {
         TableData data = new TableData();

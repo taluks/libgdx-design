@@ -30,11 +30,6 @@ public class SaveUiComponentCommand extends SimpleCommand {
         Skin skin = project.getSkin();
         UIComponent component = new UIComponent();
         ActorData[] actors = component.assemble(skin, container.getChildren());
-
-        if (actors.length == 1) {
-            json.toJson(component.getActorsDataSet().first(), new FileHandle(fileName));
-        } else {
-            json.toJson(component.getActorsDataSet(), new FileHandle(fileName));
-        }
+        json.toJson(actors, new FileHandle(fileName));
     }
 }

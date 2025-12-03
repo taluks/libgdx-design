@@ -19,7 +19,7 @@ public abstract class AbstractTableAssembler<T extends Table, D extends TableDat
             cell.pad(cellData.padTop, cellData.padLeft, cellData.padBottom, cellData.padRight);
             cell.colspan(cellData.colspan);
             cell.expand(cellData.expandX, cellData.expandY);
-            cell.fill(cellData.fillX, cellData.expandY);
+            if (cellData.fillX > 0 || cellData.fillY > 0) cell.fill(cellData.fillX, cellData.expandY);
             if (cellData.endRow) table.row();
         }
         table.invalidateHierarchy();
@@ -34,6 +34,7 @@ public abstract class AbstractTableAssembler<T extends Table, D extends TableDat
             cellData.padLeft = cell.getPadLeft();
             cellData.padTop = cell.getPadTop();
             cellData.padRight = cell.getPadRight();
+            cellData.padBottom = cell.getPadBottom();
             cellData.align = cell.getAlign();
             cellData.colspan = cell.getColspan();
             cellData.endRow = cell.isEndRow();

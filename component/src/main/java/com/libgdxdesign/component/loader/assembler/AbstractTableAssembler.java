@@ -8,7 +8,7 @@ import com.badlogic.gdx.utils.Array;
 import com.libgdxdesign.component.model.CellData;
 import com.libgdxdesign.component.model.TableData;
 
-public abstract class AbstractTableAssembler<T extends Table, D extends TableData> extends ActorAssembler<T, D> {
+public abstract class AbstractTableAssembler<T extends Table, D extends TableData> extends AbstractGroupAssembler<T, D> {
 
     @Override
     public T buildParameters(ProxyAssembler proxy, Skin skin, T table, D data) {
@@ -19,7 +19,7 @@ public abstract class AbstractTableAssembler<T extends Table, D extends TableDat
             cell.pad(cellData.padTop, cellData.padLeft, cellData.padBottom, cellData.padRight);
             cell.colspan(cellData.colspan);
             cell.expand(cellData.expandX, cellData.expandY);
-            if (cellData.fillX > 0 || cellData.fillY > 0) cell.fill(cellData.fillX, cellData.expandY);
+            cell.fill(cellData.fillX, cellData.fillY);
             if (cellData.endRow) table.row();
         }
         table.invalidateHierarchy();

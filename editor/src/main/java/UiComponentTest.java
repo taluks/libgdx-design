@@ -40,12 +40,22 @@ public class UiComponentTest extends ApplicationAdapter {
 		Button button = new TextButton("Button", skin);
 		button.setSize(70, 30);
 		button.setName("btn1");
-		
+
+		Button button2 = new TextButton("Button 2", skin);
+		button2.setSize(70, 30);
+		button2.setPosition(0, 50);
+		button2.setName("btn2");
+
+		Image image = new Image(skin.getDrawable("radio"));
+
 		Window window = new Window("Window", skin);
 		window.setName("wnd1");
 		window.add(label).expand().top().padTop(10).row();
+		window.add(image).expandX().right().row();
 		window.add(button).expandX().fill().padBottom(20);
 		window.setSize(200, 150);
+		window.addActor(button2);
+
 		stage.addActor(window);
 
 		Button newBtn = new TextButton("New Btn", skin);
@@ -69,6 +79,8 @@ public class UiComponentTest extends ApplicationAdapter {
 		
 		builder = manager.get(fileUi);
 		ObjectMap<String, Actor> actors = builder.build(skin);
+		TextButton btn = ((Window) actors.get("wnd1")).findActor("btn1");
+		btn.setText("LOADED");
 		for (Actor a : actors.values()) {
 			stage.addActor(a);
 		}

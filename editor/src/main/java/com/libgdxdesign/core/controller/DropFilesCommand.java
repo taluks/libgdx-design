@@ -43,8 +43,7 @@ public class DropFilesCommand extends SimpleCommand {
     }
 
     private UIComponent loadUi(FileHandle fileHandle) {
-        UIComponent component = new UIComponent();
-        return component.load(fileHandle);
+        return new UIComponent().load(fileHandle);
     }
 
     private Array<FileHandle> getFilesFromPaths(String[] paths) {
